@@ -9,12 +9,14 @@ const msm = {
     height: 750,
     marginAll: 50,
     marginLeft: 50,
+    marginBottom: 10
 }
 const small_msm = {
     width: 500,
     height: 500,
     marginAll: 100,
-    marginLeft: 130
+    marginLeft: 0,
+    marginBottom: 60
 }
 
 window.onload = function () {
@@ -50,8 +52,8 @@ function makeLabels(svgContainer, msm, title, x, y) {
         .text(title);
 
     svgContainer.append('text')
-        .attr('x', (msm.width - 2 * msm.marginAll) / 2 - 30)
-        .attr('y', msm.height - 10)
+        .attr('x', (msm.width - msm.marginAll) / 2 - msm.marginLeft)
+        .attr('y', msm.height - msm.marginBottom)
         .style('font-size', '10pt')
         .text(x);
 
@@ -134,7 +136,7 @@ function plotPopulation(country, toolChart) {
                     .x(function(d) { return mapFunctions.xScale(d.year) })
                     .y(function(d) { return mapFunctions.yScale(d.population) }))
 
-    makeLabels(toolChart, small_msm, "Year", "", "Population");
+    makeLabels(toolChart, small_msm, "Population vs. Year (1960-2016)", "Year", "Population");
 }
 
 function drawAxes(limits, x, y, svgContainer, msm) {
